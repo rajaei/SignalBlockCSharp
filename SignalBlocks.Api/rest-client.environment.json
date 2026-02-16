@@ -1,0 +1,13 @@
+{
+  "environments": {
+    "local": {
+      "SignalBlock_HostAddress": "http://localhost:5000"
+    },
+    "dev": {
+      "SignalBlock_HostAddress": "https://dev-api.yourdomain.com"
+    },
+    "prod": {
+      "SignalBlock_HostAddress": "https://api.yourdomain.com"
+    }
+  }
+}

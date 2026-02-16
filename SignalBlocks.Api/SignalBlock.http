@@ -1,0 +1,30 @@
+﻿@SignalBlock_HostAddress = http://localhost:5000
+@DateTime = {{$datetime iso8601}}
+GET {{SignalBlock_HostAddress}}
+Content-Type: application/json
+
+### تست بچ
+POST {{SignalBlock_HostAddress}}/api/write/Batch
+Content-Type: application/json
+
+{
+  "deviceId": "EAF-Gateway-01",
+  "globalSource": "furnace-line-A",
+  "globalApplication": "EAF-Monitoring",
+  "tags": [
+    {
+      "tagId": "EAF_Temp1",
+      "value": 1450.5,
+      "quality": "good",
+      "timestamp": "{{DateTime}}"
+    },
+    {
+      "tagId": "EAF_Power",
+      "value": 5200,
+      "quality": "good",
+      "timestamp": "{{$datetime iso8601}}",
+      "source": "power-meter-main",        
+      "application": "Power-Control"
+    }
+  ]
+}

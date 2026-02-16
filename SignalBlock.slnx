@@ -1,0 +1,5 @@
+<Solution>
+  <Project Path="SignalBlocks.Api/SignalBlocks.Api.csproj" />
+  <Project Path="SignalBlocks.Writer.Common/SignalBlocks.Writer.Common.csproj" />
+  <Project Path="SignalBlocks.Writer.Core/SignalBlocks.Writer.Core.csproj" />
+</Solution>
