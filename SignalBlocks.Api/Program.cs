@@ -1,8 +1,13 @@
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Options;
 using Minio;
 using SignalBlocks.Writer.Core.Interfaces;
+using SignalBlocks.Writer.Core.Redis;
 using SignalBlocks.Writer.Core.Writers;
 
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.Configure<MinioOptions>(builder.Configuration.GetSection("Minio"));
 
 // === Dependency Injection ===
 builder.Services.AddSingleton<IMinioClient>(sp =>
@@ -19,13 +24,16 @@ builder.Services.AddSingleton<IMinioClient>(sp =>
 
 builder.Services.AddSingleton<IWriter>(sp =>
 {
-    var config = sp.GetRequiredService<IConfiguration>();
     var client = sp.GetRequiredService<IMinioClient>();
+    var options = sp.GetRequiredService<IOptions<MinioOptions>>();
 
-    var bucket = config["Minio:Bucket"] ?? "signalblocks";
-
-    return new MinioWriter(client, bucket);
+    return new MinioWriter(client, options.Value.Bucket);
 });
+
+// Redis
+builder.Services.Configure<RedisOptions>(builder.Configuration.GetSection("Redis"));
+builder.Services.AddSingleton<RedisService>();
+
 // Controllers
 builder.Services.AddControllers();
 

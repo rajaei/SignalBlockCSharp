@@ -7,6 +7,11 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Services\MinioWriterService.cs" />
+    <Compile Remove="Services\RedisService.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="10.0.1" />
     <PackageReference Include="Minio" Version="7.0.0" />
   </ItemGroup>
@@ -14,6 +19,10 @@
   <ItemGroup>
     <ProjectReference Include="..\SignalBlocks.Writer.Common\SignalBlocks.Writer.Common.csproj" />
     <ProjectReference Include="..\SignalBlocks.Writer.Core\SignalBlocks.Writer.Core.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Services\" />
   </ItemGroup>
 
 </Project>

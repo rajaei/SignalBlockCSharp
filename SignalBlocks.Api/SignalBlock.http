@@ -1,11 +1,11 @@
 ﻿@SignalBlock_HostAddress = http://localhost:5000
-@DateTime = {{$datetime iso8601}}
+@DateTime = {{$timestamp}}
 GET {{SignalBlock_HostAddress}}
 Content-Type: application/json
 
 ### تست بچ
 POST {{SignalBlock_HostAddress}}/api/write/Batch
-Content-Type: application/json
+Content-Type: 	 application/json
 
 {
   "deviceId": "EAF-Gateway-01",
@@ -22,7 +22,7 @@ Content-Type: application/json
       "tagId": "EAF_Power",
       "value": 5200,
       "quality": "good",
-      "timestamp": "{{$datetime iso8601}}",
+      "timestamp": "{{DateTime}}",
       "source": "power-meter-main",        
       "application": "Power-Control"
     }
